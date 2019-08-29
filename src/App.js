@@ -19,7 +19,7 @@ class Recipe extends React.Component {
       <div className='recipe_layout'>
         <h2>{this.props.title}</h2>
         <h3>Ingredients</h3>
-        <ul>{ingredient}</ul>
+        <ul>{ingredients}</ul>
         <h3>Steps</h3>
         <ol>{steps}</ol>
       </div>
