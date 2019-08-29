@@ -4,8 +4,8 @@ import './App.css';
 class Ingredient extends React.Component {
   render() {
     return (
-      <div className=''>
-        <p>{this.props.amount} {this.props.measurementType} {this.props.ingredient}</p>
+      <div>
+        <p>{this.props.ingredient}</p>
       </div>
     )
   }
@@ -13,7 +13,7 @@ class Ingredient extends React.Component {
 
 class Recipe extends React.Component {
   render() {
-    const ingredients = this.props.ingredients.map((amount, measurementType, ingredient) => <Ingredient amount={amount} measurementType={measurementType} ingredient={ingredient} />);
+    const ingredients = this.props.ingredients.map((ingredient) => <Ingredient ingredient={ingredient} />);
     const steps = this.props.steps.map((step) => <li>{step}</li>);
     return (
       <div className='recipe_layout'>
@@ -36,21 +36,9 @@ class App extends React.Component {
         {
           title: 'Salsa',
           ingredients: [
-            {
-              amount: '1/2',
-              measurementType: 'cup',
-              ingredient: 'tomato'
-            },
-            {
-              amount: '1/2',
-              measurementType: 'cup',
-              ingredient: 'red, green, yellow peppers each'
-            },
-            {
-              amount: '1/4',
-              measurementType: 'cup',
-              ingredient: 'cilantro'
-            }
+            '1/2 cup tomato',
+            '1/2 cup green, yellow, red peppers each',
+            '1/4 cup cilantro'
           ],
           steps: [
             'Cut up tomato into medium bowl',
@@ -65,7 +53,7 @@ class App extends React.Component {
   
   render() {
     return (
-      <div className="recipeApp">
+      <div className='recipeApp'>
         <h1> Recipes </h1>
         <ul>
           <Recipe ingredients={this.state.recipes[0].ingredients} steps={this.state.recipes[0].steps} title={this.state.recipes[0].title} />
