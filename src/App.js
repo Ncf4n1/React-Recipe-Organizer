@@ -1,19 +1,9 @@
 import React from 'react';
 import './App.css';
 
-class Ingredient extends React.Component {
-  render() {
-    return (
-      <div>
-        <p>{this.props.ingredient}</p>
-      </div>
-    )
-  }
-}
-
 class Recipe extends React.Component {
   render() {
-    const ingredients = this.props.ingredients.map((ingredient) => <Ingredient ingredient={ingredient} />);
+    const ingredients = this.props.ingredients.map((ingredient) => <li>{ingredient} </li>);
     const steps = this.props.steps.map((step) => <li>{step}</li>);
     return (
       <div className='recipe_layout'>
