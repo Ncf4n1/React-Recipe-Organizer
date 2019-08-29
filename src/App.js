@@ -32,7 +32,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      recipes = [
+      recipes: [
         {
           title: 'Salsa',
           ingredients: [
