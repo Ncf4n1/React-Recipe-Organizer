@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "create-react-kotlin-app": "^1.0.12",
+    "eslint-utils": "^1.4.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
