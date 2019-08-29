@@ -34,6 +34,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="recipeApp">
+        <h1> Recipes </h1>
       </div>
     )
   }
