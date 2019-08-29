@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Ingredient extends React.Component {
+  render() {
+    return (
+      <div className=''>
+        <p>{this.props.amount} {this.props.measurementType} {this.props.ingredient}</p>
+      </div>
+    )
+  }
+}
+
+class Recipe extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      title: '',
+      ingredients: [],
+      steps: []
+    };
+  }
+  
+  render() {
+    return (
+      <div className='ingredients'>
+      </div>
+    )
+  }
+}
+
+
+class App extends React.Component {
+  render() {
+    return (
+      <div className="recipeApp">
+      </div>
+    )
+  }
 }
 
 export default App;
