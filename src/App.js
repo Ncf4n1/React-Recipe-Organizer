@@ -6,7 +6,7 @@ class Recipe extends React.Component {
     const ingredients = this.props.ingredients.map((ingredient) => <li>{ingredient} </li>);
     const steps = this.props.steps.map((step) => <li>{step}</li>);
     return (
-      <div className='recipe_layout'>
+      <div id='recipeLayout'>
         <h2>{this.props.title}</h2>
         <h3>Ingredients</h3>
         <ul>{ingredients}</ul>
@@ -36,18 +36,53 @@ class App extends React.Component {
             'Dice cilantro and add to bowl',
             'Mix and serve with your favorite chips'
           ]
+        },
+        {
+          title: 'Toast',
+          ingredients: [
+            'Bread',
+            'Toaster'
+          ],
+          steps: [
+            'Put bread in toast',
+            'Run toaster',
+            'Eat'
+          ]
         }
       ]
     }
   }
   
+  changeRecipe(recipe) {
+  }
+  
   render() {
     return (
-      <div className='recipeApp'>
-        <h1> Recipes </h1>
-        <ul>
-          <Recipe ingredients={this.state.recipes[0].ingredients} steps={this.state.recipes[0].steps} title={this.state.recipes[0].title} />
-        </ul>
+      <div id='recipeApp'>
+        <div id='recipeSideNav'>
+          <h2>Recipe Book</h2>
+          <ul id='recipeBookList'>
+            {
+              this.state.recipes.map((recipe) =>
+                <li>
+                  <button onClick='changeRecipe' className='recipeBookButton'>
+                  {recipe.title}
+                  </button>
+                </li>
+              )
+            }
+          </ul>
+        </div>
+        <div id='recipeMainContent'>
+          <h1> Recipes </h1>
+          <ul>
+            <Recipe
+              ingredients={this.state.recipes[0].ingredients}
+              steps={this.state.recipes[0].steps}
+              title={this.state.recipes[0].title}
+            />
+            </ul>
+        </div>
       </div>
     )
   }

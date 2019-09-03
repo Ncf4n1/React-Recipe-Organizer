@@ -1,0 +1,32 @@
+#recipeSideNav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  border-right: solid 1px #C2C2C2;
+}
+
+#recipeSideNav h2 {
+  padding-left: 15px;
+}
+
+#recipeBookList {
+  list-style-type: none;
+}
+
+.recipeBookButton {
+  border: none;
+  background-color: #FFFFFF;
+  font-size: 18px;
+}
+
+.recipeBookButton:hover {
+  cursor: pointer;
+}
+
+#recipeMainContent {
+  margin-left: 250px;
+}
