@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/React-Recipe-Organizer/static/css/main.cfda8877.chunk.css",
-    "main.js": "/React-Recipe-Organizer/static/js/main.2f2f2998.chunk.js",
-    "main.js.map": "/React-Recipe-Organizer/static/js/main.2f2f2998.chunk.js.map",
+    "main.css": "/React-Recipe-Organizer/static/css/main.183faff5.chunk.css",
+    "main.js": "/React-Recipe-Organizer/static/js/main.614cbb23.chunk.js",
+    "main.js.map": "/React-Recipe-Organizer/static/js/main.614cbb23.chunk.js.map",
     "runtime~main.js": "/React-Recipe-Organizer/static/js/runtime~main.9d999890.js",
     "runtime~main.js.map": "/React-Recipe-Organizer/static/js/runtime~main.9d999890.js.map",
-    "static/js/2.4eecb4df.chunk.js": "/React-Recipe-Organizer/static/js/2.4eecb4df.chunk.js",
-    "static/js/2.4eecb4df.chunk.js.map": "/React-Recipe-Organizer/static/js/2.4eecb4df.chunk.js.map",
+    "static/js/2.09bd6d91.chunk.js": "/React-Recipe-Organizer/static/js/2.09bd6d91.chunk.js",
+    "static/js/2.09bd6d91.chunk.js.map": "/React-Recipe-Organizer/static/js/2.09bd6d91.chunk.js.map",
     "index.html": "/React-Recipe-Organizer/index.html",
-    "precache-manifest.cb0c60da48614f17d27c3d0429a53ea9.js": "/React-Recipe-Organizer/precache-manifest.cb0c60da48614f17d27c3d0429a53ea9.js",
+    "precache-manifest.6e33744ba73142aa30478153c6db6f60.js": "/React-Recipe-Organizer/precache-manifest.6e33744ba73142aa30478153c6db6f60.js",
     "service-worker.js": "/React-Recipe-Organizer/service-worker.js",
-    "static/css/main.cfda8877.chunk.css.map": "/React-Recipe-Organizer/static/css/main.cfda8877.chunk.css.map"
+    "static/css/main.183faff5.chunk.css.map": "/React-Recipe-Organizer/static/css/main.183faff5.chunk.css.map"
   }
 }
