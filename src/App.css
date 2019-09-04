@@ -1,6 +1,6 @@
 #recipeSideNav {
   height: 100%;
-  width: 200px;
+  width: 385px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -20,7 +20,8 @@
 .recipeBookButton {
   border: none;
   background-color: #FFFFFF;
-  font-size: 18px;
+  font-size: 22px;
+  padding-bottom: 10px;
 }
 
 .recipeBookButton:hover {
@@ -28,5 +29,5 @@
 }
 
 #recipeMainContent {
-  margin-left: 250px;
+  margin-left: 420px;
 }
