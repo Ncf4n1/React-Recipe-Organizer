@@ -1,16 +1,23 @@
 #recipeSideNav {
-  height: 100%;
-  width: 385px;
+  height: 95%;
+  width: 24.7%;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
   overflow-x: hidden;
-  border-right: solid 1px #C2C2C2;
+  margin-top: 0.5%;
+  border-right: solid 5px #C0C0C0;
 }
 
 #recipeSideNav h2 {
-  padding-left: 15px;
+  padding-left: 10%;
+  margin-right: 3%;
+  margin-left: 1%;
+  font-size: 35px;
+  background-color: #32CD32;
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #recipeBookList {
@@ -21,13 +28,44 @@
   border: none;
   background-color: #FFFFFF;
   font-size: 22px;
+  font-family: 'Raleway', sans-serif;
   padding-bottom: 10px;
 }
 
 .recipeBookButton:hover {
   cursor: pointer;
+  font-weight: bold;
 }
 
 #recipeMainContent {
-  margin-left: 420px;
+  margin-left: 26%;
+  width: 74%;
+  padding-top: 0.55%;
+}
+
+#recipeLayout h2 {
+  font-size: 35px;
+  background-color: #32CD32;
+  color: #FFFFFF;
+  font-family: 'Montserrat', sans-serif;
+  padding-left: 2%;
+  margin-right: 10%;
+}
+
+#recipeLayout h3 {
+  font-size: 22px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+#recipeLayout li {
+  padding-bottom: 8px;
+  font-size: 18px;
+  font-family: 'Raleway', sans-serif;
+}
+
+#ingredientsList ul {
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }

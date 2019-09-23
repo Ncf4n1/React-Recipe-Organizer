@@ -1,17 +1,27 @@
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import './App.css';
 
 class Recipe extends React.Component {
   render() {
-    const ingredients = this.props.ingredients.map((ingredient) => <li>{ingredient} </li>);
-    const steps = this.props.steps.map((step) => <li>{step}</li>);
+    const ingredients = this.props.ingredients.map((ingredient, key) => <li key={key}>{ingredient} </li>);
+    const steps = this.props.steps.map((step, key) => <li key={key}>{step}</li>);
     return (
       <div id='recipeLayout'>
         <h2>{this.props.title}</h2>
         <h3>Ingredients</h3>
-        <ul>{ingredients}</ul>
+        <div id='ingredientsList'>
+          <ul>{ingredients}</ul>
+        </div>
         <h3>Steps</h3>
-        <ol>{steps}</ol>
+        <div id='stepsList'>
+          <ol>{steps}</ol>
+        </div>
       </div>
     )
   }
@@ -110,26 +120,14 @@ class App extends React.Component {
             'Add shredded carrots, buttermilk or sour milk, cooking oil, drained pineapple, 1 cup nuts, eggs, coconut, and vanilla',
             'Stir until combined and spread into baking pan(s)',
             'Bake at 350 degrees for 40-45 minutes or until cake springs when touched',
+            'Combine 1/2 cup sugar, 1/4 cup buttermilk or sour milk, 1/4 cup butter, and 2 teaspoons light-colored corn syrup in a medium saucepan',
+            'Bring mixture to boiling',
+            'Cook and stir mixture for 4 minutes',
+            'Remove saucepan from heat and stir in vanilla to create Buttermilk Glaze',
             'Pour Buttermilk Glaze over top of cake',
             'Cool layers of cake in pans on wire rack for 15 minutes',
             'Remove cakes and cool on racks',
             'Frost with Cream Cheese Frosting and sprinkle with 1/2 cup of nuts'
-          ]
-        },
-        {
-          title: 'Buttermilk Glaze',
-          ingredients: [
-            '1/2 cup sugar',
-            '1/4 cup buttermilk or sour milk',
-            '1/4 cup butter',
-            '2 teaspoons light-colored corn syrup',
-            '1/2 teaspoon vanilla'
-          ],
-          steps: [
-            'Combine sugar, buttermilk or sour milk, butter, and corn syrup in a medium saucepan',
-            'Bring to boiling, then reduce heat',
-            'Cook and stir for 4 minutes',
-            'Remove saucepan from heat and stir in vanilla'
           ]
         },
         {
@@ -178,6 +176,10 @@ class App extends React.Component {
     }
   }
   
+  addRecipe() {
+    
+  }
+  
   render() {
     let currentRecipe = this.state.currentRecipe;
     return (
@@ -187,7 +189,7 @@ class App extends React.Component {
           <ul id='recipeBookList'>
             {
               this.state.recipes.map((recipe) =>
-                <li>
+                <li key={recipe.title}>
                   <button
                     id={recipe.title + '_button'}
                     onClick={this.changeRecipe}

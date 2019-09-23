@@ -4,6 +4,7 @@
   "homepage": "http://Ncf4n1.github.io/React-Recipe-Organizer",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.4.2",
     "create-react-kotlin-app": "^1.0.12",
     "eslint-utils": "^1.4.2",
     "react": "^16.9.0",
