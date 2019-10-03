@@ -14,7 +14,7 @@
   padding-left: 10%;
   margin-right: 3%;
   margin-left: 1%;
-  font-size: 35px;
+  font-size: 33px;
   background-color: #32CD32;
   color: #FFFFFF;
   font-family: 'Montserrat', sans-serif;
@@ -27,7 +27,7 @@
 .recipeBookButton {
   border: none;
   background-color: #FFFFFF;
-  font-size: 22px;
+  font-size: 20px;
   font-family: 'Raleway', sans-serif;
   padding-bottom: 10px;
 }
