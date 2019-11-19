@@ -7,7 +7,9 @@
     "@material-ui/core": "^4.4.2",
     "create-react-kotlin-app": "^1.0.12",
     "eslint-utils": "^1.4.2",
+    "local-storage": "^2.0.0",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
   },
