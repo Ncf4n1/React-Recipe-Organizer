@@ -1,94 +1,9 @@
-import React, { useState } from 'react';
-import {Modal,FormLabel,FormGroup,FormControl,Button} from 'react-bootstrap';
+import React from 'react';
+import {Button, ButtonToolbar} from 'react-bootstrap';
+import {Recipe} from './components/Recipe.js';
+import {AddRecipe} from './components/AddRecipe.js';
+import {EditRecipe} from './components/EditRecipe.js';
 import './App.css';
-
-class Recipe extends React.Component {
-  render() {
-    const ingredients = this.props.ingredients.map((ingredient, key) => <li key={key}>{ingredient} </li>);
-    const steps = this.props.steps.map((step, key) => <li key={key}>{step}</li>);
-    return (
-      <div id='recipeLayout'>
-        <h2>{this.props.title}</h2>
-        <h3>Ingredients</h3>
-        <div id='ingredientsList'>
-          <ul>{ingredients}</ul>
-        </div>
-        <h3>Steps</h3>
-        <div id='stepsList'>
-          <ol>{steps}</ol>
-        </div>
-      </div>
-    )
-  }
-}
-
-class AddRecipe extends React.Component {
-  constructor(props) {//create a state to handle the new recipe
-    super(props);
-    this.state = {title: "", ingredients: "", steps: ""};
-    this.handleRecipeTitleChange = this.handleRecipeTitleChange.bind(this);
-    this.handleRecipeIngredientsChange = this.handleRecipeIngredientsChange.bind(this);
-    this.handleRecipeStepsChange = this.handleRecipeStepsChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-	  this.handleCancel = this.handleCancel.bind(this);
-  }
-  handleRecipeTitleChange(e) {//change the name to reflect user input
-    this.setState({title: e.target.value});
-  }
-  handleRecipeIngredientsChange(e) {//change the ingredients to reflect user input
-    this.setState({ingredients: e.target.value});
-  }
-  handleRecipeStepsChange(e) {
-    this.setState({steps: e.target.value});
-  }
-  handleSubmit(e) {//get the recipe data, manipulate it and call the function for creating a new recipe
-    e.preventDefault();
-    const onAdd = this.props.onAdd;
-    const regExp = /\s*,\s*/;
-    var newTitle = this.state.title;
-    var newIngredients = this.state.ingredients.split(regExp);
-    var newSteps = this.state.steps.split(regExp);
-    var newRecipe = {title: newTitle, ingredients: newIngredients, steps: newSteps};
-    onAdd(newRecipe);
-    this.setState({title: "", ingredients: "", steps: ""});
-  }
-  handleCancel() {
-    const onAddModal = this.props.onAddModal;
-    this.setState({title: "", ingredients: "", steps: ""});
-    onAddModal();
-  }
-  render() {
-    const onShow = this.props.onShow;
-    var regex1 = /^\S/;
-    var regex2 = /^[^,\s]/;
-	  var regex3 = /[^,\s]$/;
-    const validRecipe = regex1.test(this.state.title) && regex2.test(this.state.ingredients) && regex3.test(this.state.ingredients) && regex2.test(this.state.steps) && regex3.test(this.state.steps);
-    return(
-      <Modal show={onShow} onHide={this.handleCancel}>
-        <Modal.Header closeButton>
-          <Modal.Title>Create New Recipe</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <FormGroup controlId="formControlsName">
-            <FormLabel>Recipe Title</FormLabel>
-            <FormControl type="text" required onChange={this.handleRecipeTitleChange} value={this.state.title} placeholder="Enter Title" />
-          </FormGroup>
-          <FormGroup controlId="formControlsIngredients">
-            <FormLabel>Recipe Ingredients</FormLabel>
-            <FormControl type="text" required onChange={this.handleRecipeIngredientsChange} value={this.state.ingredients} placeholder="Enter Ingredients(separate by commas)" />
-          </FormGroup>
-          <FormGroup controlId="formControlsSteps">
-            <FormLabel>Recipe Steps</FormLabel>
-            <FormControl type="text" required onChange={this.handleRecipeStepsChange} value={this.state.steps} placeholder="Enter Steps(separate by commas)" />
-          </FormGroup>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button disabled={!validRecipe} onClick={this.handleSubmit}>Save Recipe</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
-};
 
 class App extends React.Component {
   constructor(props) {
@@ -96,15 +11,19 @@ class App extends React.Component {
     this.changeRecipe = this.changeRecipe.bind(this);
     this.state = {
       showAdd: false,
+      showEdit: false,
       recipes: [],
+      currentlyEditing: 0,
       currentRecipe: null
     };
     
     this.showAddModal = this.showAddModal.bind(this);
+    this.showEditModal = this.showEditModal.bind(this);
     this.addRecipe = this.addRecipe.bind(this);
+    this.editRecipe = this.editRecipe.bind(this);
   }
   
-  componentDidMount() {//load the local storage data after the component renders
+  componentDidMount() {
     var recipes = (typeof localStorage["recipes"] !== "undefined") ? JSON.parse(localStorage.getItem("recipes")) : [
       {
         title: 'Salsa',
@@ -247,11 +166,15 @@ class App extends React.Component {
     }
   }
   
-  showAddModal() {//show the new recipe modal
+  showAddModal() {
     this.setState({showAdd: !this.state.showAdd});
   }
   
-  addRecipe(recipe) {//create a new recipe
+  showEditModal(index) {
+    this.setState({currentlyEditing: index, showEdit: !this.state.showEdit});
+  }
+  
+  addRecipe(recipe) {
     let recipes = this.state.recipes;
     recipes.push(recipe);
     localStorage.setItem('recipes', JSON.stringify(recipes));
@@ -259,8 +182,18 @@ class App extends React.Component {
     this.showAddModal();
   }
   
+  editRecipe(newTitle, newIngredients, newSteps, currentlyEditing) {
+    let recipes = this.state.recipes;
+    recipes[currentlyEditing] = {title: newTitle, ingredients: newIngredients, steps: newSteps};
+    localStorage.setItem('recipes', JSON.stringify(recipes));
+    this.setState({recipes: recipes});
+    this.showEditModal(currentlyEditing);
+  }
+  
   render() {
+    const recipes = this.state.recipes;
     let currentRecipe = this.state.currentRecipe;
+    let currentlyEditing = this.state.currentlyEditing;
     
     return (
       <div id='recipeApp'>
@@ -268,21 +201,25 @@ class App extends React.Component {
           <h2>Recipe Book</h2>
           <ul id='recipeBookList'>
             {
-              this.state.recipes.map((recipe) =>
+              this.state.recipes.map((recipe, index) =>
                 <li key={recipe.title}>
                   <button
                     id={recipe.title + '_button'}
                     onClick={this.changeRecipe}
-                    className='recipeBookButton'
+                    class='recipeBookButton'
                   >
                   {recipe.title}
                   </button>
+                  <ButtonToolbar>
+                    <Button variant="secondary" onClick={() => {this.showEditModal(index)}}>Edit</Button>
+                  </ButtonToolbar>
                 </li>
               )
             }
           </ul>
           
-        <Button onClick={this.showAddModal}>Add Recipe</Button>
+        <EditRecipe onShow={this.state.showEdit} onEdit={this.editRecipe} onEditModal={() => {this.showEditModal(currentlyEditing)}} currentlyEditing={currentlyEditing} recipe={recipes[currentlyEditing]} />
+        <Button variant="info" onClick={this.showAddModal}>Add Recipe</Button>
         <button onClick={() => localStorage.clear()}>Delete Recipes</button>
         
         </div>
