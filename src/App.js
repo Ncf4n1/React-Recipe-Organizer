@@ -33,7 +33,7 @@ class App extends React.Component {
   
   // Function to add some premade recipes to the page's localStorage acting as permanent storage
   componentDidMount() {
-    var recipes = (typeof localStorage["recipes"] !== "undefined") ? JSON.parse(localStorage.getItem("recipes")) : [
+    var recipes = (typeof localStorage['recipes'] !== 'undefined') ? JSON.parse(localStorage.getItem('recipes')) : [
       {
         title: 'Salsa',
         ingredients: [
@@ -226,7 +226,7 @@ class App extends React.Component {
                   {recipe.title}
                   </button>
                   <ButtonToolbar>
-                    <Button variant="secondary" onClick={() => {this.showEditModal(index)}}>Edit</Button>
+                    <Button variant='secondary' size='sm' onClick={() => {this.showEditModal(index)}}>Edit</Button>
                   </ButtonToolbar>
                 </li>
               )
@@ -234,7 +234,7 @@ class App extends React.Component {
           </ul>
 
         <EditRecipe onShow={this.state.showEdit} onEdit={this.editRecipe} onEditModal={() => {this.showEditModal(currentlyEditing)}} currentlyEditing={currentlyEditing} recipe={recipes[currentlyEditing]} />
-        <Button variant="info" onClick={this.showAddModal}>Add Recipe</Button>
+        <Button variant='info' onClick={this.showAddModal}>Add Recipe</Button>
         
         </div>
         

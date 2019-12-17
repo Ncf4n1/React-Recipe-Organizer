@@ -6,9 +6,9 @@ export class AddRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-          title: "",
-          ingredients: "",
-          steps: ""
+          title: '',
+          ingredients: '',
+          steps: ''
     };
     
     this.handleRecipeTitleChange = this.handleRecipeTitleChange.bind(this);
@@ -39,13 +39,13 @@ export class AddRecipe extends React.Component {
     let newSteps = this.state.steps.split(regExp);
     let newRecipe = {title: newTitle, ingredients: newIngredients, steps: newSteps};
     onAdd(newRecipe);
-    this.setState({title: "", ingredients: "", steps: ""});
+    this.setState({title: '', ingredients: '', steps: ''});
   }
   
   // Function that handles the user selecting the cancel button
   handleCancel() {
     const onAddModal = this.props.onAddModal;
-    this.setState({title: "", ingredients: "", steps: ""});
+    this.setState({title: '', ingredients: '', steps: ''});
     onAddModal();
   }
   
@@ -61,17 +61,17 @@ export class AddRecipe extends React.Component {
           <Modal.Title>Create New Recipe</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <FormGroup controlId="addModalName">
+          <FormGroup controlId='addModalName'>
             <FormLabel>Recipe Title</FormLabel>
-            <FormControl type="text" required onChange={this.handleRecipeTitleChange} value={this.state.title} placeholder="Enter Title" />
+            <FormControl type='text' required onChange={this.handleRecipeTitleChange} value={this.state.title} placeholder='Enter Title' />
           </FormGroup>
-          <FormGroup controlId="addModalIngredients">
+          <FormGroup controlId='addModalIngredients'>
             <FormLabel>Recipe Ingredients</FormLabel>
-            <FormControl type="text" required onChange={this.handleRecipeIngredientsChange} value={this.state.ingredients} placeholder="Enter Ingredients(separate by commas)" />
+            <FormControl type='text' required onChange={this.handleRecipeIngredientsChange} value={this.state.ingredients} placeholder='Enter Ingredients(separate by commas)' />
           </FormGroup>
-          <FormGroup controlId="addModalSteps">
+          <FormGroup controlId='addModalSteps'>
             <FormLabel>Recipe Steps</FormLabel>
-            <FormControl type="text" required onChange={this.handleRecipeStepsChange} value={this.state.steps} placeholder="Enter Steps(separate by commas)" />
+            <FormControl type='text' required onChange={this.handleRecipeStepsChange} value={this.state.steps} placeholder='Enter Steps(separate by commas)' />
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>

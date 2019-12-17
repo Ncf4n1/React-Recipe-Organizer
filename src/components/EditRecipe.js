@@ -6,9 +6,9 @@ export class EditRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-          title: "",
-          ingredients: "",
-          steps: ""
+          title: '',
+          ingredients: '',
+          steps: ''
     };
     
     this.handleRecipeTitleChange = this.handleRecipeTitleChange.bind(this);
@@ -41,13 +41,13 @@ export class EditRecipe extends React.Component {
     let ingredients = this.state.ingredients.split(regExp);
     let steps = this.state.steps.split(regExp);
     onEdit(title, ingredients, steps, currentlyEditing);
-    this.setState({title: "", ingredients: "", steps: ""});
+    this.setState({title: '', ingredients: '', steps: ''});
   }
   
   // Helper function that allows the user to exit the popup box
   handleCancel() {
     const onEditModal = this.props.onEditModal;
-    this.setState({title: this.props.recipe.title, ingredients: this.props.recipe.ingredients.join(","), steps: this.props.recipe.steps.join(",")});
+    this.setState({title: this.props.recipe.title, ingredients: this.props.recipe.ingredients.join(','), steps: this.props.recipe.steps.join(',')});
     onEditModal();
   }
   
@@ -63,21 +63,21 @@ export class EditRecipe extends React.Component {
           <Modal.Title>Edit Recipe</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <FormGroup controlId="editModalTitle">
+          <FormGroup controlId='editModalTitle'>
             <FormLabel>Recipe Title</FormLabel>
-            <FormControl type="text" required onChange={this.handleRecipeTitleChange} value={this.state.title} placeholder="Enter Title" />
+            <FormControl type='text' required onChange={this.handleRecipeTitleChange} value={this.state.title} placeholder='Enter Title' />
           </FormGroup>
-          <FormGroup controlId="editModalIngredients">
+          <FormGroup controlId='editModalIngredients'>
             <FormLabel>Recipe Ingredients</FormLabel>
-            <FormControl componentClass="textarea" type="text" required onChange={this.handleRecipeIngredientsChange} value={this.state.ingredients} placeholder="Enter Ingredients(separate by commas)" />
+            <FormControl componentClass='textarea' type='text' required onChange={this.handleRecipeIngredientsChange} value={this.state.ingredients} placeholder='Enter Ingredients(separate by commas)' />
           </FormGroup>
-          <FormGroup controlId="editModalSteps">
+          <FormGroup controlId='editModalSteps'>
             <FormLabel>Recipe Steps</FormLabel>
-            <FormControl componentClass="textarea" type="text" required onChange={this.handleRecipeStepsChange} value={this.state.steps} placeholder="Enter Steps(separate by commas)" />
+            <FormControl componentClass='textarea' type='text' required onChange={this.handleRecipeStepsChange} value={this.state.steps} placeholder='Enter Steps(separate by commas)' />
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button disabled={!validRecipe} bsStyle="success" onClick={this.handleEdit}>Save Recipe</Button>
+          <Button disabled={!validRecipe} bsStyle='success' onClick={this.handleEdit}>Save Recipe</Button>
         </Modal.Footer>
       </Modal>
     );
