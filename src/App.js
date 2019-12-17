@@ -5,10 +5,17 @@ import {AddRecipe} from './components/AddRecipe.js';
 import {EditRecipe} from './components/EditRecipe.js';
 import './App.css';
 
+// App class that acts as parent of recipes, recipe additions, and editing recipes
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.changeRecipe = this.changeRecipe.bind(this);
+    
+    /* showAdd -> switch to determine if the user is adding a new recipe
+       showEdit -> switch to determine if the user is attempting to edit a recipe
+       recipes -> list of recipes the user has added
+       currentlyEditing -> index value used to determine which recipe a user is changing
+       currentRecipe -> indicator that determines which recipe's details are currently being displayed
+    */
     this.state = {
       showAdd: false,
       showEdit: false,
@@ -17,12 +24,14 @@ class App extends React.Component {
       currentRecipe: null
     };
     
+    this.changeRecipe = this.changeRecipe.bind(this);
     this.showAddModal = this.showAddModal.bind(this);
     this.showEditModal = this.showEditModal.bind(this);
     this.addRecipe = this.addRecipe.bind(this);
     this.editRecipe = this.editRecipe.bind(this);
   }
   
+  // Function to add some premade recipes to the page's localStorage acting as permanent storage
   componentDidMount() {
     var recipes = (typeof localStorage["recipes"] !== "undefined") ? JSON.parse(localStorage.getItem("recipes")) : [
       {
@@ -155,6 +164,7 @@ class App extends React.Component {
     this.setState({recipes: recipes});
   }
   
+  // Helper function that handles the user wanting to see details for a different recipe
   changeRecipe(recipeButton) {
     const recipeTitle = recipeButton.target.id.split('_')[0];
     const recipesByTitle = this.state.recipes.filter((recipe) => recipe.title === recipeTitle);
@@ -166,14 +176,17 @@ class App extends React.Component {
     }
   }
   
+  // Simple helper function that shows the addRecipe popup box
   showAddModal() {
     this.setState({showAdd: !this.state.showAdd});
   }
   
+  // Simple helper function that shows the editRecipe popup box
   showEditModal(index) {
     this.setState({currentlyEditing: index, showEdit: !this.state.showEdit});
   }
   
+  // Function that handles the user submitting information for a new recipe
   addRecipe(recipe) {
     let recipes = this.state.recipes;
     recipes.push(recipe);
@@ -182,6 +195,7 @@ class App extends React.Component {
     this.showAddModal();
   }
   
+  // Function that handles the user submitting updated information for an existing recipe
   editRecipe(newTitle, newIngredients, newSteps, currentlyEditing) {
     let recipes = this.state.recipes;
     recipes[currentlyEditing] = {title: newTitle, ingredients: newIngredients, steps: newSteps};
@@ -190,8 +204,9 @@ class App extends React.Component {
     this.showEditModal(currentlyEditing);
   }
   
+  
   render() {
-    const recipes = this.state.recipes;
+    let recipes = this.state.recipes;
     let currentRecipe = this.state.currentRecipe;
     let currentlyEditing = this.state.currentlyEditing;
     
@@ -217,12 +232,12 @@ class App extends React.Component {
               )
             }
           </ul>
-          
+
         <EditRecipe onShow={this.state.showEdit} onEdit={this.editRecipe} onEditModal={() => {this.showEditModal(currentlyEditing)}} currentlyEditing={currentlyEditing} recipe={recipes[currentlyEditing]} />
         <Button variant="info" onClick={this.showAddModal}>Add Recipe</Button>
-        <button onClick={() => localStorage.clear()}>Delete Recipes</button>
         
         </div>
+        
         <div id='recipeMainContent'>
           {
             currentRecipe ?

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 
+// Simple Component that handles displaying the Title, Ingredients, and Steps for a selected recipe
 export class Recipe extends React.Component {
   render() {
     const ingredients = this.props.ingredients.map((ingredient, key) => <li key={key}>{ingredient} </li>);
